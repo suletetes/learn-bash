@@ -20,3 +20,24 @@ then
     exit 1
 fi
 echo "Your username is ${user_name}"
+
+user_name_to_test_for='vagrant'
+if [[ "${user_name}" = "${user_name_to_test_for}" ]]
+then
+     echo "Your message matches ${user_name_to_test_for}"
+fi
+
+
+if [[ "${user_name}" = "${user_name_to_test_for}" ]]
+then
+    echo "Your usernmae does not match ${user_name_to_test_for}".
+    exit 1
+fi
+
+exit 0
+
+
+
+
+
+

@@ -20,3 +20,7 @@ password=$(date +%s%n | sha256sum | head -c32)
 # an even  better password
 password=$(date +%s%n${RANDOM}${RANDOM} | sha256sum | head -c32)
 echo "${password}"
+
+# special_character
+special_character=$(echo '!@#$%^&*()_-+=' | fold -w1 | shuf | head -c1)
+echo "${password}${special_character}"

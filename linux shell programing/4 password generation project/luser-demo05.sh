@@ -9,3 +9,7 @@ echo "${password}"
 
 password=$(date +%s)
 echo "${password}"
+
+# use nano seconds
+password=$(date +%s%n)
+echo "${password}"

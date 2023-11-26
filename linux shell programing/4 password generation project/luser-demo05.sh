@@ -13,3 +13,8 @@ echo "${password}"
 # use nano seconds
 password=$(date +%s%n)
 echo "${password}"
+
+# a better password
+
+password=$(date +%s%n | sha256sum | head -c32)
+echo "${password}"

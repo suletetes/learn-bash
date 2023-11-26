@@ -8,3 +8,4 @@ password="${RANDOM}${RANDOM}${RANDOM}"
 echo "${password}"
 
 password=$(date +%s)
+echo "${password}"

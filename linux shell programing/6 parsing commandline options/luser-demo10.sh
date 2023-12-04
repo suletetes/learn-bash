@@ -4,9 +4,19 @@
 # }
 
 log(){
+    local verbose="${1}"
+    shift
     local message="${@}"
-    echo "${message}"
+    if [[ "${verbose}" = 'true' ]]
+    then
+        echo "${message}"
+    fi
 }
 
-log 'Hello'
-log 'This is fun!'
+# log 'true' 'Hello'
+# verbose='true'
+# log 'This is fun!'
+
+verbosity='true'
+log "${verbosity}" "hello!"
+log "${verbosity}" "this is fun!"

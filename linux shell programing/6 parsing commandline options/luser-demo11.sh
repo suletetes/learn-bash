@@ -53,3 +53,11 @@ then
     SPECIAL_CHARACTER=$(echo '!@#$%^&*()_+=' | fold -w1 | shuf | head -c1)
     PASSWORD="${PASSWORD}${SPECIAL_CHARACTER}"
 fi
+
+log 'Done'
+log 'Here is the password'
+
+# display password
+echo "${PASSWORD}"
+
+exit 0

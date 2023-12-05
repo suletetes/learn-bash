@@ -43,7 +43,24 @@ do
     esac
 done
 
+
+echo "Number of args: ${#}"
+echo "All args: ${@}"
+echo "First args: ${1}"
+echo "second args: ${2}"
+echo "Third args: ${3}"
+
+# inspect optind
+echo "optind"
+echo "optind ${OPTIND}"
+
+# remove the options while leaving the remaining arguements
+shift "$(( OPTIND  - 1 ))"
+echo "after the shift"
+
 log 'Generating a password'
+
+
 PASSWORD=$(date +%s%N${RANDOM}${RANDOM} | sha256sum | head -c${LENGTH})
 
 # append a special character if requested to do so

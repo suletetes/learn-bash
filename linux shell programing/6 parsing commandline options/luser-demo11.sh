@@ -60,6 +60,17 @@ echo "after the shift"
 
 log 'Generating a password'
 
+# echo "After the shift"
+# echo "Number of args: ${#}"
+# echo "All args: ${@}"
+# echo "First args: ${1}"
+# echo "second args: ${2}"
+# echo "Third args: ${3}"
+
+if [[ "${#}" -gt 0 ]] 
+then
+    usage
+fi
 
 PASSWORD=$(date +%s%N${RANDOM}${RANDOM} | sha256sum | head -c${LENGTH})
 

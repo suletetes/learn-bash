@@ -13,7 +13,7 @@ usage(){
 
 
 log(){
-
+    
     local message="${@}"
     if [[ "${verbose}" = 'true' ]]
     then
@@ -44,3 +44,12 @@ do
 done
 
 log 'Generating a password'
+PASSWORD=$(date +%s%N${RANDOM}${RANDOM} | sha256sum | head -c${LENGTH})
+
+# append a special character if requested to do so
+if [[ "${USE_SPECIAL_CHARACTER}" = 'true' ]]
+then
+    log 'Selecting a random special character.'
+    SPECIAL_CHARACTER=$(echo '!@#$%^&*()_+=' | fold -w1 | shuf | head -c1)
+    PASSWORD="${PASSWORD}${SPECIAL_CHARACTER}"
+fi

@@ -83,5 +83,29 @@ do
     fi
 fi 
 
+if [[ "${DELETE_USER}" = 'true' ]]
+then
+    # delete user
+    userdel ${REMOVE_OPTION} ${USERNAME}
+
+    # check to see if the userdel command succeeded.
+    # we dont want to tell the user that an account was deleted when it hasn't been.
+    if [[ "${?}" -ne 0 ]]
+    then
+        echo "The account ${USERNAME} was not deleted.">&2
+        exit 1
+    fi
+    else
+        chage  -E 0 ${USERNAME}
+    
+        # check to see if the chage command succeeded.
+        # we dont want to tell the user that an account was disabled when it hasn't been.
+        if [[ "${?}" -ne 0 ]]
+        then
+            echo "The account ${USERNAME} was not disabled.">&2
+            exit 1
+        fi
+
+
 
 

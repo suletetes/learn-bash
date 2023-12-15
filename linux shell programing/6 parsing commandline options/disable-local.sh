@@ -28,3 +28,25 @@ do
     ?) usage ;;
     esac
 done
+
+# remove the options while leaving the remaining arguments
+shift "$(( OPTIND - 1 ))
+
+#  if the user doesn't supply at least one arguement, give them help.
+
+if [[ "${#}" -lt 1 ]]
+then
+    usage
+fi
+
+# loop throught all the usernames supplied as arguments.
+for USERNAME in "${@}"
+do
+    echo "processing user: ${USERNAME}"
+    # make sure the UID of the account is at least 1000.
+    USERID=$(id -u ${USERNAME})
+    if [[ "${USERID}" -lt 1000 ]]
+    then
+        echo "Refusing to remove the ${USERNAME} account with UID ${USERID}." >&2
+        exit 1
+    fi

@@ -23,10 +23,10 @@ fi
 while getopts dra OPTION
 do
     case ${OPTION} in
-    d) DELETE_USER='true' ;;
-    r) REMOVE_OPTION='-r' ;;
-    a) ARCHIVE='true' ;;
-    ?) usage ;;
+        d) DELETE_USER='true' ;;
+        r) REMOVE_OPTION='-r' ;;
+        a) ARCHIVE='true' ;;
+        ?) usage ;;
     esac
 done
 
@@ -81,7 +81,7 @@ do
     else
         echo "${HOME_DIR} does not exist or is not a directory." >&2
     fi
-fi 
+    fi
 
 if [[ "${DELETE_USER}" = 'true' ]]
 then
@@ -97,7 +97,7 @@ then
     fi
     else
         chage  -E 0 ${USERNAME}
-    
+
         # check to see if the chage command succeeded.
         # we dont want to tell the user that an account was disabled when it hasn't been.
         if [[ "${?}" -ne 0 ]]
@@ -105,7 +105,8 @@ then
             echo "The account ${USERNAME} was not disabled.">&2
             exit 1
         fi
-
+done
+exit 0
 
 
 

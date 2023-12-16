@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
   end
 
   # Configuration for the third Docker container
-  config.vm.define "server02" do |server01|
+  config.vm.define "server01" do |server01|
     server01.vm.provider :docker do |d|
     server01.vm.network "private_network", ip: "10.9.8.6"
       d.remains_running = true
@@ -27,9 +27,9 @@ Vagrant.configure("2") do |config|
   end
 
   # Configuration for the third Docker container
-  config.vm.define "server02" do |test3|
+  config.vm.define "server02" do |server02|
     server02.vm.provider :docker do |d|
-    server02.vm.network "private_network", ip: "10.9.8.9"
+    server02.vm.network "private_network", ip: "10.9.8.7"
       d.remains_running = true
       d.has_ssh = true
       d.name = "server02" # Setting a custom name for the container

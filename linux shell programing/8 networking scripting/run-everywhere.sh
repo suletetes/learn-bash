@@ -24,3 +24,21 @@ then
     echo "Do not execute this script as root. use the -s option instead." >&2
     usage
 fi
+
+#  parse the options
+
+while getopts f:nsv OPTION
+do
+    case ${OPTION} in
+    f) SERVER_LIST="${OPTARG}" ;;
+    n) DRYRUN="true" ;;
+    s) SUDO="sudo" ;;
+    v) VERBOSE='true' ;;
+    ?) usage ;;
+    esac
+done
+
+# remove the options while leaving the remaining argue,emts.
+shift "$((OPTIND -1))"
+
+# 

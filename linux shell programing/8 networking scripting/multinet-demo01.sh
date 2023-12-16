@@ -3,7 +3,7 @@
 # the script pings a list of servers and reports their status
 
 
-SERVER_FILE='/vagrant/servers'
+SERVER_FILE='servers'
 if [[ ! -e ${SERVER_FILE} ]]
 then
     echo "Cannot open ${SERVER_FILE}." >&2

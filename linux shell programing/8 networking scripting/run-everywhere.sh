@@ -4,7 +4,6 @@
 SERVER_LIST='servers'
 
 # options for ssh command
-
 SSH_OPTIONS='-o ConnectTimeout=2'
 
 

@@ -68,7 +68,7 @@ do
         ${SSH_COMMAND}
         EXIT_STATUS="${SSH_EXIT_STATUS}"
         echo "EXECUTION on ${SERVER} failed." >&2
-        fi
+        # fi
     fi
 done
 

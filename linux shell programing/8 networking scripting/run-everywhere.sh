@@ -39,6 +39,38 @@ do
 done
 
 # remove the options while leaving the remaining argue,emts.
-shift "$((OPTIND -1))"
+shift "$(( OPTIND - 1 ))"
 
-# 
+# if the user doesn't supply at least one arguement, give them help.
+if [[ "${#}" -lt 1 ]]
+then
+    echo "cannot open sever list file ${SERVER_LIST}" >&2
+    exit 1
+fi
+
+# expect the best prefer for the worst.
+EXIT_STATUS='0'
+
+# loop through the sever_list
+for SEVER in $(cat "${SERVER_LIST}")
+do
+    if [[ "${VERBOSE}" = 'true' ]]
+    then
+        echo "${SERVER}"
+    fi
+    SSH_COMMAND="ssh ${SSH_OPTIONS} ${SERVER} ${SUDO} ${COMMAND}"
+
+    # if it's a dry run, dom't execute anything, just echo it.
+
+    if [[ "${DRYRUN}" = 'true' ]]
+    then
+        echo "DRY RUN: ${SSH_COMMAND}"
+    else
+        ${SSH_COMMAND}
+        EXIT_STATUS="${SSH_EXIT_STATUS}"
+        echo "EXECUTION on ${SERVER} failed." >&2
+        fi
+    fi
+done
+
+exit ${EXIT_STATUS}

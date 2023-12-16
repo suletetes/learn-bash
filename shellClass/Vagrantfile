@@ -25,4 +25,14 @@ Vagrant.configure("2") do |config|
       d.name = "test2" # Setting a custom name for the container
     end
   end
+
+  # Configuration for the third Docker container
+  config.vm.define "test3" do |test3|
+    test3.vm.provider :docker do |d|
+    test3.vm.network "private_network", ip: "10.9.8.9"
+      d.remains_running = true
+      d.has_ssh = true
+      d.name = "test3" # Setting a custom name for the container
+    end
+  end
 end
